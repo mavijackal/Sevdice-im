@@ -85,17 +85,15 @@ p {
     position: relative;
 }
 
-/* Kalpli Fotoğraf Stili */
+/* Fotoğraf Stili */
 .galeri-foto {
     object-fit: cover;
     aspect-ratio: 1 / 1;
     width: 300px;
     height: 300px;
     
-    /* Şekillendirme kodları silindi */
-
     border: none;
-    border-radius: 0; /* İsterseniz burayı 10px yapıp köşeleri yuvarlayabilirsiniz */
+    border-radius: 10px; /* Yuvarlak köşeler */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out; 
     margin: 0 5px;
@@ -149,12 +147,12 @@ p {
     text-align: center;
 }
 
-/* YENİ EKLENEN: SEVGİ SAYACI STİLLERİ */
+/* KALPLİ SAYAÇ STİLLERİ */
 .sevgi-sayaci {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 20px;
-    background-color: #ff007f; /* Parlak pembe arka plan */
+    background-color: #ff007f; 
     color: white;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -173,22 +171,46 @@ p {
 }
 
 .sevgi-sayaci .sayac-deger {
-    font-size: 3em; /* Sayıyı çok büyük yap */
+    font-size: 3em;
     font-weight: bold;
-    color: #ffeb3b; /* Parlak sarı */
+    color: #ffeb3b; 
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     transition: transform 0.5s ease;
-    animation: sayacTitreme 1s infinite alternate; /* Sayıya hafif titreme */
+    animation: sayacTitreme 1s infinite alternate;
 }
 
 @keyframes sayacTitreme {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.02);
-    }
+    from { transform: scale(1); }
+    to { transform: scale(1.02); }
 }
+
+/* YENİ EKLENEN: SAĞ ÜST MÜZİK KONTROL BUTONU STİLİ */
+.muzik-kontrol-btn {
+    position: fixed; 
+    top: 20px;
+    right: 20px;
+    z-index: 1000; 
+    background-color: #ff007f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.muzik-kontrol-btn:hover {
+    background-color: #e60073;
+}
+
+/* Başlangıçtaki büyük butona basılana kadar kontrol butonu gizli kalır */
+#muzikBaslatButonu:not([style*="display: none"]) ~ #muzikKontrolButonu {
+    display: none;
+}
+
 
 /* MOBİL UYUMLULUK */
 @media screen and (max-width: 600px) {
@@ -245,7 +267,15 @@ p {
         margin-top: 30px;
         margin-bottom: 30px;
     }
-    .sevgi-sayaci .sayac-deger {
+    .sevgi-sayaci .sayac-değer {
         font-size: 2.2em;
+    }
+
+    /* Mobil cihazda sağ üst butonu biraz içeri kaydır */
+    .muzik-kontrol-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.9em;
     }
 }
