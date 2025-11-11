@@ -1,0 +1,251 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffe0e6;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #d11f5f;
+    font-size: 2.5em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.small-text {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* ANA BUTON STİLİ */
+#muzikBaslatButonu {
+    background-color: #ff007f;
+    color: white;
+    border: 5px solid white;
+    padding: 25px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 8px 15px rgba(255, 0, 127, 0.5);
+    transition: all 0.3s;
+    animation: pulse 1.5s infinite;
+}
+
+#muzikBaslatButonu:hover {
+    background-color: #e60073;
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* GALERİ VE NOT STİLLERİ */
+.galeri-kapsayici {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+/* Kalpli Fotoğraf Stili */
+.galeri-foto {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    width: 300px;
+    height: 300px;
+    
+    /* Şekillendirme kodları silindi */
+
+    border: none;
+    border-radius: 0; /* İsterseniz burayı 10px yapıp köşeleri yuvarlayabilirsiniz */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out; 
+    margin: 0 5px;
+}
+
+.galeri-foto:hover {
+    transform: scale(1.05); 
+}
+
+/* Galeri Butonları Stili */
+.galeri-buton {
+    background-color: #ff007f;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.galeri-buton:hover {
+    background-color: #e60073;
+    transform: translateY(-50%) scale(1.1);
+}
+
+#oncekiFotoBtn { left: -20px; }
+#sonrakiFotoBtn { right: -20px; }
+
+
+/* Anı Notu Stili */
+.ani-notu {
+    background-color: #ffffff;
+    color: #d11f5f;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-style: italic;
+    line-height: 1.5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* YENİ EKLENEN: SEVGİ SAYACI STİLLERİ */
+.sevgi-sayaci {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: #ff007f; /* Parlak pembe arka plan */
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.sevgi-sayaci p {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 5px 0;
+    line-height: 1.2;
+}
+
+.sevgi-sayaci .sayac-deger {
+    font-size: 3em; /* Sayıyı çok büyük yap */
+    font-weight: bold;
+    color: #ffeb3b; /* Parlak sarı */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transition: transform 0.5s ease;
+    animation: sayacTitreme 1s infinite alternate; /* Sayıya hafif titreme */
+}
+
+@keyframes sayacTitreme {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.02);
+    }
+}
+
+/* MOBİL UYUMLULUK */
+@media screen and (max-width: 600px) {
+    
+    h1 { font-size: 1.8em; margin-bottom: 20px; }
+    p { font-size: 1em; }
+    
+    #muzikBaslatButonu { font-size: 1.2em; padding: 20px 30px; }
+
+    .galeri-kapsayici {
+        flex-direction: column;
+        margin: 30px auto;
+        position: static; 
+    }
+
+    .galeri-foto {
+        width: 200px; 
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    
+    .galeri-buton {
+        position: static;
+        transform: none; 
+        width: 40%;
+        margin: 10px 5px; 
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 1.2em;
+        display: inline-block;
+    }
+
+    .galeri-kapsayici {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .galeri-kapsayici img {
+        order: 1;
+        margin-bottom: 20px;
+    }
+    #oncekiFotoBtn { order: 2; }
+    #sonrakiFotoBtn { order: 3; }
+
+    .ani-notu {
+        padding: 15px;
+        font-size: 1em;
+        margin: 15px auto;
+    }
+    
+    .sevgi-sayaci {
+        max-width: 95%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .sevgi-sayaci .sayac-deger {
+        font-size: 2.2em;
+    }
+}

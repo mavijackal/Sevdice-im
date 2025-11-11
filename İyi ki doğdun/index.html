@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Canım Sevgilime Özel Doğum Günü Kutlaması!</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    
+    <button id="muzikBaslatButonu">💌 SENİN İÇİN BİR SÜRPRİZİM VAR, TIKLA! 🎶</button>
+
+    <iframe id="youtube-player"
+        style="display: none;"
+        width="1" height="1" 
+        src="https://www.youtube.com/embed/maeM2LrsAis?enablejsapi=1&loop=1&playlist=maeM2LrsAis" 
+        frameborder="0" 
+        allow="encrypted-media" 
+        allowfullscreen>
+    </iframe>
+
+    <div class="content-wrapper hidden" id="siteIcerigi">
+        <h1>Canım Sevgilim, Doğum Günün Kutlu Olsun!</h1>
+        <p>Bu, senin için sevgiyle hazırladığımız ilk sayfa.</p>
+        <p class="small-text">Sana özel bir sürpriz!</p>
+
+        <div class="galeri-kapsayici">
+            <button id="oncekiFotoBtn" class="galeri-buton sol-buton">⬅️</button>
+            <img src="img/fotograf1.jpg" alt="Anılarımızdan Bir Kare" id="galeriFoto" class="galeri-foto">
+            <button id="sonrakiFotoBtn" class="galeri-buton">➡️</button>
+        </div>
+        
+        <p class="ani-notu" id="aniNotu"></p>
+
+        <div class="sevgi-sayaci">
+            <p>Seni tam</p>
+            <p class="sayac-deger" id="kalpSayisi">0</p>
+            <p>kalp kadar seviyorum! ❤️</p>
+        </div>
+        
+    </div>
+    
+    <script>
+        // BUTON İŞLEVİ
+        document.getElementById('muzikBaslatButonu').addEventListener('click', function() {
+            var player = document.getElementById('youtube-player');
+            var icerik = document.getElementById('siteIcerigi');
+            
+            player.style.display = 'block';
+            this.style.display = 'none'; 
+            icerik.classList.remove('hidden');
+            player.src += "&autoplay=1"; 
+            
+            // Galeri ve sayacı başlat
+            initializeGallery();
+            sayaciBaslat(); // YENİ: Sayaç başlatma
+        }, {once: true});
+
+
+        // GALERİ İÇERİĞİ VE İŞLEVİ (BURAYI DÜZENLEMELİSİNİZ)
+        
+        const galeriIcerigi = [
+            {
+                foto: 'img/1.jpg', // Lütfen adları değiştirin!
+                not: 'Başımın ağrısının tek güzel vesilesisin seninle tanışamazdım o olmasa Allah başımdan eksik etmesin güzelim❤️' 
+            },
+            {
+                foto: 'img/2.jpg', // Lütfen adları değiştirin!
+                not: 'Doğum günün kutlu olsun sevdiceğim.'
+            },
+             {
+                foto: 'img/3.jpg', // Lütfen adları değiştirin!
+                not: 'Seni çok seviyorum, nice mutlu senelere Edebiyatçım.'
+            },
+             {
+                foto: 'img/4.jpg', // Lütfen adları değiştirin!
+                not: 'Sen benim aslanım eşeğim çiçeğim biricik yavrumsun yeni yaşında İnşallah istediğin gibi bir yıl geçiririz.'
+            },
+             {
+                foto: 'img/5.jpg', // Lütfen adları değiştirin!
+                not: 'Kalbinde olduğum kadar yanında olmayı isterdim mumunu vaktinde üfletemiyorum üzgünüm sevdiceğim.'
+            },
+             {
+                foto: 'img/6.jpg', // Lütfen adları değiştirin!
+                not: 'Benim Dünyam senin gözlerinde saklı, gözlerin gibi bu yaşın da güzel geçsin.'
+            },
+             {
+                foto: 'img/7.jpg', // Lütfen adları değiştirin!
+                not: 'Sen benim mücevherimsin,yaşın ilerledikçe yaşıyoruz birlikte öğreniyoruz gelişiyoruz^^.'
+            },
+             {
+                foto: 'img/8.jpg', // Lütfen adları değiştirin!
+                not: 'Kalbim seninle büyüyor sadece seninle atıyor iyi ki varsın birtanem.'
+            },
+             {
+                foto: 'img/9.jpg', // Lütfen adları değiştirin!
+                not: 'Masallarımın prensesi,içimdeki çocuğun öğretmeni,trafikteki usta sürücüm,otobüste tutamacım,okulunda sıra arkadaşım,uyurken rüyalarım ayakta hayallerim sen benim her şeyimsin hayatımın kadını.'
+            },
+            
+            {
+                foto: 'img/10.jpg', // Lütfen adları değiştirin!
+                not: 'SENİ ÇOK SEVİYORUM YAVRUM İYİ Kİ DOĞDUN İYİ Kİ BENİMSİN SENİNLE BİR ÖMÜR SONSUZ BİR HAYAT,ÇOK ŞANSLIYIM SENİN GİBİ BİR HATUNUM OLDUĞU BERABER YILLARI GEÇİRDİĞİMİZ İÇİN <3.'
+            }
+            
+        ];
+        
+        let suankiFotoIndex = 0;
+        const galeriFoto = document.getElementById('galeriFoto');
+        const sonrakiFotoBtn = document.getElementById('sonrakiFotoBtn');
+        const oncekiFotoBtn = document.getElementById('oncekiFotoBtn');
+        const aniNotu = document.getElementById('aniNotu');
+
+        const initializeGallery = () => {
+            galeriFoto.src = galeriIcerigi[suankiFotoIndex].foto;
+            aniNotu.textContent = galeriIcerigi[suankiFotoIndex].not;
+        }
+
+        sonrakiFotoBtn.addEventListener('click', () => {
+            suankiFotoIndex = (suankiFotoIndex + 1) % galeriIcerigi.length;
+            galeriFoto.src = galeriIcerigi[suankiFotoIndex].foto;
+            aniNotu.textContent = galeriIcerigi[suankiFotoIndex].not;
+        });
+
+        oncekiFotoBtn.addEventListener('click', () => {
+            suankiFotoIndex = (suankiFotoIndex - 1 + galeriIcerigi.length) % galeriIcerigi.length;
+            galeriFoto.src = galeriIcerigi[suankiFotoIndex].foto;
+            aniNotu.textContent = galeriIcerigi[suankiFotoIndex].not;
+        });
+
+        // YENİ EKLENEN: KALPLİ SAYAÇ İŞLEVİ
+        const kalpSayisiEkran = document.getElementById('kalpSayisi');
+        const hedefSayi = 987654321; // Sevginizin son değeri!
+        let mevcutSayi = 0;
+        const artisHizi = 500000; // Sayacın ne kadar hızlı artacağı
+
+        const sayaciBaslat = () => {
+            const sayacInterval = setInterval(() => {
+                mevcutSayi += artisHizi;
+                
+                if (mevcutSayi >= hedefSayi) {
+                    mevcutSayi = hedefSayi;
+                    clearInterval(sayacInterval);
+                }
+                
+                // Sayıyı binlik ayraçlarla (nokta) formatla
+                kalpSayisiEkran.textContent = mevcutSayi.toLocaleString('tr-TR');
+            }, 10); // 10 milisaniyede bir güncelle
+        };
+        
+    </script>
+</body>
+</html>
